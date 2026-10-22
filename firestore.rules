@@ -1,0 +1,66 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAuthenticated() {
+      return request.auth != null && request.auth.uid != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 64 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // User document
+    match /users/{userId} {
+      allow read, get: if isOwner(userId);
+      allow create, update: if isOwner(userId) && isValidId(userId);
+      allow delete: if isOwner(userId);
+
+      // Financial profile subcollection
+      match /financial_profiles/{profileId} {
+        allow read, get, list: if isOwner(userId);
+        allow create, update: if isOwner(userId) && isValidId(profileId);
+        allow delete: if isOwner(userId);
+      }
+
+      // Transactions subcollection
+      match /transactions/{transactionId} {
+        allow read, get, list: if isOwner(userId);
+        allow create, update: if isOwner(userId) && isValidId(transactionId);
+        allow delete: if isOwner(userId);
+      }
+
+      // Watchlists subcollection
+      match /watchlists/{watchlistId} {
+        allow read, get, list: if isOwner(userId);
+        allow create, update: if isOwner(userId) && isValidId(watchlistId);
+        allow delete: if isOwner(userId);
+      }
+
+      // AI analyses subcollection
+      match /ai_analyses/{analysisId} {
+        allow read, get, list: if isOwner(userId);
+        allow create, update: if isOwner(userId) && isValidId(analysisId);
+        allow delete: if isOwner(userId);
+      }
+
+      // Goals subcollection
+      match /goals/{goalId} {
+        allow read, get, list: if isOwner(userId);
+        allow create, update: if isOwner(userId) && isValidId(goalId);
+        allow delete: if isOwner(userId);
+      }
+
+      // Price Alerts subcollection
+      match /price_alerts/{alertId} {
+        allow read, get, list: if isOwner(userId);
+        allow create, update: if isOwner(userId) && isValidId(alertId);
+        allow delete: if isOwner(userId);
+      }
+    }
+  }
+}

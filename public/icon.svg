@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#064e3b"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#6ee7b7"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="url(#bg)"/>
+  <!-- Chart Line -->
+  <path d="M 96 360 L 192 280 L 272 320 L 416 160" fill="none" stroke="url(#line)" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Point circle -->
+  <circle cx="416" cy="160" r="22" fill="#ffffff" stroke="#059669" stroke-width="8"/>
+  <!-- Bar markers -->
+  <rect x="120" y="380" width="28" height="40" rx="8" fill="#10b981" opacity="0.4"/>
+  <rect x="190" y="320" width="28" height="100" rx="8" fill="#10b981" opacity="0.6"/>
+  <rect x="260" y="340" width="28" height="80" rx="8" fill="#10b981" opacity="0.5"/>
+  <rect x="330" y="240" width="28" height="180" rx="8" fill="#10b981" opacity="0.8"/>
+  <rect x="400" y="180" width="28" height="240" rx="8" fill="#34d399" opacity="0.9"/>
+  <!-- App text mark -->
+  <text x="256" y="125" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="900" fill="#ffffff" letter-spacing="2">INVESTMATE</text>
+</svg>

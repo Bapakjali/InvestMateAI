@@ -1,0 +1,130 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User account document",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email"]
+    },
+    "FinancialProfile": {
+      "title": "FinancialProfile",
+      "description": "User financial health and investment profile",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "monthlyIncome": { "type": "number" },
+        "monthlyExpenses": { "type": "number" },
+        "familyDependents": { "type": "number" },
+        "debtInstallments": { "type": "number" },
+        "emergencyFund": { "type": "number" },
+        "availableCapital": { "type": "number" },
+        "monthlyInvestCapacity": { "type": "number" },
+        "investmentGoal": { "type": "string" },
+        "timeHorizonYears": { "type": "number" },
+        "riskTolerance": { "type": "string", "enum": ["konservatif", "moderat", "agresif"] },
+        "experienceLevel": { "type": "string", "enum": ["pemula", "menengah", "berpengalaman"] },
+        "liquidityNeeds": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "monthlyIncome", "monthlyExpenses", "riskTolerance"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Investment transaction record for stocks or mutual funds",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "assetType": { "type": "string", "enum": ["saham", "reksadana"] },
+        "symbol": { "type": "string" },
+        "assetName": { "type": "string" },
+        "category": { "type": "string" },
+        "type": { "type": "string", "enum": ["beli", "jual"] },
+        "date": { "type": "string" },
+        "unitsOrLots": { "type": "number" },
+        "pricePerUnit": { "type": "number" },
+        "fee": { "type": "number" },
+        "totalAmount": { "type": "number" },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "assetType", "symbol", "type", "date", "unitsOrLots", "pricePerUnit", "totalAmount"]
+    },
+    "WatchlistItem": {
+      "title": "WatchlistItem",
+      "description": "Stock or mutual fund watched by user",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "symbol": { "type": "string" },
+        "assetName": { "type": "string" },
+        "assetType": { "type": "string", "enum": ["saham", "reksadana"] },
+        "category": { "type": "string" },
+        "addedAt": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "required": ["userId", "symbol", "assetType"]
+    },
+    "AiAnalysis": {
+      "title": "AiAnalysis",
+      "description": "Saved AI investment decision or asset analysis record",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "topic": { "type": "string" },
+        "assetSymbol": { "type": "string" },
+        "prompt": { "type": "string" },
+        "response": { "type": "string" },
+        "statusBadge": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "topic", "prompt", "response"]
+    },
+    "InvestmentGoal": {
+      "title": "InvestmentGoal",
+      "description": "Financial goals tracked by the user",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "targetAmount": { "type": "number" },
+        "currentAmount": { "type": "number" },
+        "targetYear": { "type": "number" },
+        "category": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "title", "targetAmount", "targetYear"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile documents"
+    },
+    "/users/{userId}/financial_profiles/{profileId}": {
+      "schema": "FinancialProfile",
+      "description": "User financial health profile"
+    },
+    "/users/{userId}/transactions/{transactionId}": {
+      "schema": "Transaction",
+      "description": "User transaction history"
+    },
+    "/users/{userId}/watchlists/{watchlistId}": {
+      "schema": "WatchlistItem",
+      "description": "User watchlist items"
+    },
+    "/users/{userId}/ai_analyses/{analysisId}": {
+      "schema": "AiAnalysis",
+      "description": "User AI consultation and analysis logs"
+    },
+    "/users/{userId}/goals/{goalId}": {
+      "schema": "InvestmentGoal",
+      "description": "User investment and financial goals"
+    }
+  }
+}

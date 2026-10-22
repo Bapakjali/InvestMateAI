@@ -1,0 +1,6 @@
+{
+  "name": "InvestMate AI",
+  "description": "AI Investment Assistant Indonesia untuk Saham BEI dan Reksa Dana Bibit/Bareksa bagi pemula dengan analisis rasional dan manajemen risiko.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
